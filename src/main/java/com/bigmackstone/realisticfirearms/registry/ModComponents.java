@@ -1,8 +1,9 @@
 package com.bigmackstone.realisticfirearms.registry;
 
 import com.bigmackstone.realisticfirearms.RealisticFirearms;
-import net.minecraft.network.codec.ByteBufCodecs;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -12,12 +13,12 @@ public final class ModComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> LOADED_AMMO =
             COMPONENTS.registerComponentType("loaded_ammo", builder -> builder
-                    .persistent(net.minecraft.nbt.NbtAccounter.CODEC)
+                    .persistent(Codec.INT)
                     .networkSynchronized(ByteBufCodecs.VAR_INT));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<String>> ATTACHMENT =
             COMPONENTS.registerComponentType("attachment", builder -> builder
-                    .persistent(com.mojang.serialization.Codec.STRING)
+                    .persistent(Codec.STRING)
                     .networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
     private ModComponents() {}
